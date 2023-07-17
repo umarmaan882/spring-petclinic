@@ -29,5 +29,5 @@ jobs:
     with:
       java-version: ${{github.event.inputs.java-version}}
       maven_command: ${{github.event.inputs.maven_command}}
-      environments: ${{github.event.inputs.environment}}
+      environment: ${{github.event.inputs.environment}}
       
