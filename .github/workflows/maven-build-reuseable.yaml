@@ -1,1 +1,33 @@
+name: Java CI with Maven reuseable workflow
 
+on:
+  workflow_dispatch:
+    inputs:
+     java-version:
+       type: string
+       description: 'specify the java version'
+       required: true
+       default: '11'
+     maven_command:
+       type: choice
+       description: 'specifiy the command'
+       options: 
+        - ./mvnw -B package
+        - ./mvnw -B install
+       required: true
+     environments:
+        type: choice
+        description: 'specify the environment'
+        options:
+         - production
+         - dev
+ 
+
+jobs:
+   call-maven-ci-reuseable:
+    uses: aliahmadd445/ReusableWorkflow/blob/main/.github/workflows/maven-ci.yml@main
+    with:
+      java-version: ${{github.event.inputs.java-version}}
+      maven_command: ${{github.event.inputs.maven_command}}
+      environments: ${{github.event.inputs.environment}}
+      
