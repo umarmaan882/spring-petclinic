@@ -25,7 +25,7 @@ on:
 
 jobs:
    call-maven-ci-reuseable:
-    uses: aliahmadd445/ReusableWorkflow/blob/main/.github/workflows/maven-ci.yml@main
+    uses: aliahmadd445/ReusableWorkflow/.github/workflows/maven-ci.yml@main
     with:
       java-version: ${{github.event.inputs.java-version}}
       maven_command: ${{github.event.inputs.maven_command}}
