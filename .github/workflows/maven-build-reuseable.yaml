@@ -15,7 +15,7 @@ on:
         - ./mvnw -B package
         - ./mvnw -B install
        required: true
-     environments:
+     environment:
         type: choice
         description: 'specify the environment'
         options:
