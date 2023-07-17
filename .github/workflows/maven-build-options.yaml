@@ -1,1 +1,38 @@
+name: Java CI with Maven inputs
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+     java-version:
+       type: string
+       description: 'specify the java version'
+       required: true
+       default: '11'
+     maven_command:
+       type: choice
+       description: 'specifiy the command'
+       options: 
+        - ./mvnw -B package
+        - ./mvnw -B install
+       required: true
+ 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up ${{ github.event.inputs.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: '${{ github.event.inputs.java-version }}'
+          distribution: 'adopt'
+          cache: maven
+      - name: Build with Maven Wrapper
+        run: '${{ github.event.inputs.maven_command }}'
