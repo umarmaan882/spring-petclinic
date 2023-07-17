@@ -1,4 +1,4 @@
-name: Java CI with Maven inputs
+name: Java CI with Maven options
 
 on:
   push:
